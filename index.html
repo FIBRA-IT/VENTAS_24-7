@@ -1,481 +1,334 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IT Support | Fibra Inn</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  
-  <style>
-    /* --- ESTILOS FIBRA INN --- */
-    :root {
-      --verde-lima: #C4D600;
-      --verde-oscuro: #0E2A27;
-      --verde-medio: #113C35;
-      --texto-claro: #F5F5F5;
-      --texto-gris: #a0b3b0;
-      --blanco: #FFFFFF;
-      --error: #ff6b6b;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Hotel - Fibra Inn</title>
+    <link rel="icon" href="https://media.licdn.com/dms/image/v2/D560BAQHevH5LsJpmXQ/company-logo_200_200/B56Zi.DanDG4AI-/0/1755535223547/fibrainn_logo?e=2147483647&v=beta&t=IYGkfmXcHxEqXIvZ59Fyp20tYrYLykd70Ot_0YBIN1k">
+    <meta name="theme-color" content="#006400">
+    <style>
+        /* --- ESTILOS DE IDENTIDAD FIBRA INN --- */
+        :root {
+            --color-primary: #006400;   /* Verde Institucional Oscuro */
+            --color-accent: #3CB371;    /* Verde Lima/Brillante para acentos */
+            --color-bg-light: #f8f9fa;
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, var(--verde-oscuro) 0%, #05110f 100%);
-      color: var(--texto-claro);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: 0.5px; }
-    .hidden { display: none !important; }
-    
-    /* LOGO */
-    .logo-img {
-      max-width: 140px;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Fondo degradado con los colores de Fibra Inn */
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* CONTENEDOR PRINCIPAL */
-    .container {
-      background-color: rgba(17, 60, 53, 0.95);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      width: 100%;
-      max-width: 500px;
-      border-top: 4px solid var(--verde-lima);
-      animation: fadeIn 0.5s ease-in-out;
-      position: relative;
-    }
+        header {
+            width: 100%;
+            background: white;
+            padding: 15px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        
+        /* Ajuste para el nuevo logo de Fibra Inn */
+        .logo-section img {
+            max-height: 60px;
+            width: auto;
+        }
 
-    #support-view { max-width: 700px; }
+        .logo-section h1 {
+            color: var(--color-primary);
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    /* PESTAÑAS (TABS) */
-    .nav-tabs {
-      display: flex;
-      margin-bottom: 25px;
-      border-bottom: 1px solid #2a5c52;
-    }
-    .nav-tab {
-      flex: 1;
-      padding: 12px;
-      background: none;
-      border: none;
-      color: var(--texto-gris);
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-    .nav-tab:hover { color: var(--blanco); }
-    .nav-tab.active {
-      color: var(--verde-lima);
-      border-bottom: 3px solid var(--verde-lima);
-    }
+        .container {
+            width: 95%;
+            max-width: 550px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* FORMULARIOS */
-    .form-group { margin-bottom: 20px; text-align: left; }
-    
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: var(--verde-lima);
-      font-size: 0.9rem;
-    }
+        /* Barra superior decorativa */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 7px;
+            background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+        }
 
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #2a5c52;
-      background-color: rgba(255,255,255,0.05);
-      border-radius: 6px;
-      color: var(--blanco);
-      font-family: 'Open Sans', sans-serif;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
 
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--verde-lima);
-      background-color: rgba(255,255,255,0.1);
-    }
+        .nav-btn {
+            padding: 12px 5px;
+            background: var(--color-bg-light);
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-btn span { font-size: 18px; }
 
-    .btn {
-      width: 100%;
-      padding: 14px;
-      background-color: var(--verde-lima);
-      color: var(--verde-oscuro);
-      border: none;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        .nav-btn.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 10px rgba(0, 100, 0, 0.3);
+        }
+        .nav-btn:hover:not(.active) {
+             background: #e2e6ea;
+             color: var(--color-primary);
+        }
 
-    .btn:hover {
-      background-color: #dbeecf;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(196, 214, 0, 0.3);
-    }
+        h2 {
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            font-weight: 700;
+        }
 
-    .btn:disabled {
-      background-color: #666;
-      cursor: not-allowed;
-      transform: none;
-    }
+        .form-group { margin-bottom: 20px; }
 
-    .error-msg { color: var(--error); font-size: 0.9rem; margin-top: 10px; text-align: center; display: none; }
-    
-    .header-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 20px; padding-bottom: 15px;
-    }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 14px;
+        }
 
-    .logout-btn {
-      background: transparent; border: 1px solid var(--verde-lima);
-      color: var(--verde-lima); padding: 5px 15px;
-      font-size: 0.8rem; border-radius: 4px; cursor: pointer;
-    }
-    .logout-btn:hover { background: var(--verde-lima); color: var(--verde-oscuro); }
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: #fcfcfc;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 4px rgba(60, 179, 113, 0.1);
+            outline: none;
+        }
 
-    /* ESTATUS */
-    .ticket-result {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-      border-left: 4px solid var(--verde-lima);
-    }
-    .status-badge {
-      display: inline-block; padding: 4px 10px;
-      border-radius: 4px; font-size: 0.85rem; font-weight: bold;
-      margin-left: 10px; text-transform: uppercase;
-    }
-    .status-pendiente { background: #f39c12; color: #fff; }
-    .status-proceso { background: #3498db; color: #fff; }
-    .status-cerrado { background: var(--verde-lima); color: var(--verde-oscuro); }
+        button.action-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button.action-btn:hover {
+            background: var(--color-accent); /* Hover al color acento */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .report-info {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            border-left: 5px solid var(--color-accent);
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
 
-    @media (max-width: 600px) {
-      .container { padding: 20px; margin: 10px; width: 95%; }
-      .nav-tab { padding: 8px; font-size: 0.9rem; }
-    }
-  </style>
+        .section { display: none; animation: fadeIn 0.5s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        #statusMsg {
+            margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; font-size: 14px; display: none;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .loader {
+            border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid white; border-radius: 50%; width: 20px; height: 20px; animation: spin 0.8s linear infinite; display: inline-block; vertical-align: middle; margin-right: 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
 
-  <!-- LOGIN -->
-  <div id="login-view" class="container">
-    <img src="https://media.licdn.com/dms/image/v2/D560BAQHevH5LsJpmXQ/company-logo_200_200/B56Zi.DanDG4AI-/0/1755535223547/fibrainn_logo?e=2147483647&v=beta&t=IYGkfmXcHxEqXIvZ59Fyp20tYrYLykd70Ot_0YBIN1k" alt="Logo Fibra Inn" class="logo-img">
-    <h2 style="text-align: center; margin-bottom: 20px; font-size: 1.3rem;">Acceso Soporte IT</h2>
-    
-    <form id="loginForm">
-      <div class="form-group">
-        <label><i class="fa fa-user"></i> Usuario (Incode)</label>
-        <input type="text" id="username" placeholder="Ej: CUUMX" style="text-transform: uppercase;" required>
-      </div>
-      <div class="form-group">
-        <label><i class="fa fa-lock"></i> Contraseña</label>
-        <input type="password" id="password" placeholder="••••" required>
-      </div>
-      <button type="submit" class="btn">Ingresar</button>
-      <p class="error-msg" id="loginError">Usuario o contraseña incorrectos.</p>
-    </form>
-  </div>
+    <header>
+        <div class="logo-section">
+            <img src="https://media.licdn.com/dms/image/v2/D560BAQHevH5LsJpmXQ/company-logo_200_200/B56Zi.DanDG4AI-/0/1755535223547/fibrainn_logo?e=2147483647&v=beta&t=IYGkfmXcHxEqXIvZ59Fyp20tYrYLykd70Ot_0YBIN1k" alt="Logo Fibra Inn">
+            <h1>Tienda 24/7</h1>
+        </div>
+    </header>
 
-  <!-- APLICACIÓN PRINCIPAL -->
-  <div id="support-view" class="container hidden">
-    <div class="header-bar">
-      <div>
-        <h2 style="margin:0; font-size:1.5rem;">Soporte IT</h2>
-        <small id="userDisplay" style="color:var(--verde-lima); font-weight:600;"></small>
-      </div>
-      <button class="logout-btn" onclick="logout()">Salir</button>
+    <div class="container">
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('venta')"><span>🛒</span> Venta</button>
+            <button class="nav-btn" onclick="showSection('alta')"><span>➕</span> Alta</button>
+            <button class="nav-btn" onclick="showSection('baja')"><span>🗑️</span> Baja</button>
+            <button class="nav-btn" onclick="showSection('reporte')"><span>📊</span> Reportes</button>
+        </div>
+
+        <div id="statusMsg"></div>
+
+        <div id="venta" class="section active">
+            <h2>Registrar Venta</h2>
+            <form id="formVenta">
+                <div class="form-group"><label>👤 Vendedor</label><input type="text" name="vendedor" required placeholder="Nombre del colaborador"></div>
+                <div class="form-group"><label>📦 Producto</label><select name="producto" class="product-select" required><option value="">Cargando inventario...</option></select></div>
+                <div class="form-group" style="display: flex; gap: 15px;">
+                    <div style="flex: 1;"><label>Cant.</label><input type="number" name="cantidad" min="1" value="1" required></div>
+                    <div style="flex: 1;"><label>Precio Venta ($)</label><input type="number" name="precio" min="0" step="0.50" required placeholder="0.00"></div>
+                </div>
+                <button type="submit" class="action-btn">✅ Registrar Venta</button>
+            </form>
+        </div>
+
+        <div id="alta" class="section">
+            <h2>Alta de Producto</h2>
+            <form id="formAlta">
+                <div class="form-group"><label>Nombre del Producto</label><input type="text" name="nombre" required placeholder="Ej. Refresco Cola"></div>
+                <div class="form-group"><label>Descripción</label><input type="text" name="descripcion" placeholder="Detalles adicionales (opcional)"></div>
+                <div class="form-group"><label>💲 Costo Compra (Hotel)</label><input type="number" name="costo" min="0" step="0.50" required placeholder="0.00"></div>
+                <button type="submit" class="action-btn">💾 Guardar en Inventario</button>
+            </form>
+        </div>
+
+        <div id="baja" class="section">
+            <h2>Registrar Baja / Merma</h2>
+            <form id="formBaja">
+                <div class="form-group"><label>📦 Producto</label><select name="producto" class="product-select" required><option value="">Cargando inventario...</option></select></div>
+                <div class="form-group"><label>Cantidad</label><input type="number" name="cantidad" min="1" required placeholder="1"></div>
+                <div class="form-group"><label>Motivo de Baja</label><select name="motivo" required>
+                    <option value="Caducidad">📅 Caducidad</option>
+                    <option value="Cortesia">🎁 Cortesía / Amenidad</option>
+                    <option value="Robo">🚨 Robo / Pérdida</option>
+                    <option value="Consumo Interno">🏨 Consumo Interno</option>
+                    <option value="Dañado">💔 Producto Dañado</option>
+                </select></div>
+                <button type="submit" class="action-btn" style="background-color: #d32f2f;">🗑️ Confirmar Baja</button>
+            </form>
+        </div>
+
+        <div id="reporte" class="section">
+            <h2>Generar Reporte Mensual</h2>
+            <div class="report-info">
+                Se generará un informe PDF detallado (Ventas, Bajas, Inventario) y se enviará a los correos corporativos de Gloria y Cynthia.
+            </div>
+            <form id="formReporte">
+                <div class="form-group" style="display: flex; gap: 15px;">
+                    <div style="flex: 1;"><label>Mes</label><select name="mes" id="mesSelect" required></select></div>
+                    <div style="flex: 1;"><label>Año</label><select name="anio" id="anioSelect" required></select></div>
+                </div>
+                <button type="submit" class="action-btn">📧 Generar y Enviar PDF</button>
+            </form>
+        </div>
     </div>
 
-    <div class="nav-tabs">
-      <button class="nav-tab active" id="tabBtn-report" onclick="switchTab('report')">Nuevo Reporte</button>
-      <button class="nav-tab" id="tabBtn-status" onclick="switchTab('status')">Consultar Estatus</button>
-    </div>
+    <script>
+        // **********************************************************
+        // URL DEL SCRIPT (NO CAMBIA)
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNA92NhqFoHOZXZXgpDruIwx64mRqAPshq28M0K2IVukg_y8WC2oKQE3_PBwIORhw-/exec";
+        // **********************************************************
 
-    <!-- SECCIÓN 1: LEVANTAR REPORTE -->
-    <div id="tab-report">
-      <!-- Mensaje de Éxito -->
-      <div id="successMessage" class="hidden" style="text-align: center; padding: 20px;">
-        <div style="font-size: 4rem; color: var(--verde-lima); margin-bottom: 15px;">
-          <i class="fa fa-check-circle"></i>
-        </div>
-        <h3>¡Ticket Registrado!</h3>
-        <p style="margin: 10px 0;">Tu ID de seguimiento es:</p>
-        <div style="background: #fff; color: #000; padding: 10px; font-size: 1.4rem; font-weight: bold; border-radius: 6px; display: inline-block; margin-bottom: 15px;" id="newTicketId">
-          ...
-        </div>
-        <p style="font-size:0.9rem; color:var(--texto-gris)">Se ha enviado una notificación al equipo de Sistemas.</p>
-        <button class="btn" onclick="resetForm()" style="margin-top:20px">Nuevo Reporte</button>
-      </div>
+        window.addEventListener('DOMContentLoaded', () => { fetchProducts(); initDates(); });
 
-      <!-- Formulario -->
-      <form id="ticketForm">
-        <div class="form-group">
-          <label>Incode del Hotel</label>
-          <select id="incodeHotel" name="incode" required>
-            <option value="" disabled selected>Cargando...</option>
-            <option value="CUUMX">CUUMX - Chihuahua</option>
-            <option value="CUUCY">CUUCY - Chihuahua</option>
-            <option value="CUUDE">CUUDE - Chihuahua</option>
-            <option value="CUUWY">CUUWY - Chihuahua</option>
-            <option value="CJSAT">CJSAT - Ciudad Juárez</option>
-            <option value="JUAZO">JUAZO - Ciudad Juárez</option>
-            <option value="JUAMI">JUAMI - Ciudad Juárez</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Nombre de quien reporta</label>
-          <input type="text" id="reporterName" name="nombre" placeholder="Nombre completo" required>
-        </div>
-
-        <div class="form-group">
-          <label>Correo Electrónico (Fibra Inn)</label>
-          <input type="email" id="reporterEmail" name="email" placeholder="usuario@fibrainn.mx" required>
-        </div>
-
-        <div class="form-group">
-          <label>Descripción del Problema</label>
-          <textarea id="problemDesc" name="problema" rows="4" placeholder="Describe la falla detalladamente..." required></textarea>
-        </div>
-
-        <!-- Campos ocultos -->
-        <input type="hidden" id="hiddenDate" name="fecha">
-
-        <button type="submit" class="btn" id="submitBtn">
-          <i class="fa fa-paper-plane"></i> Enviar Ticket
-        </button>
-      </form>
-    </div>
-
-    <!-- SECCIÓN 2: CONSULTAR ESTATUS -->
-    <div id="tab-status" class="hidden">
-      <div class="form-group">
-        <label>Ingrese ID del Ticket</label>
-        <input type="text" id="searchTicketId" placeholder="Ej: TKT-4521">
-      </div>
-      <button class="btn" onclick="buscarTicket()" id="btnBuscar">
-        <i class="fa fa-search"></i> Buscar Ticket
-      </button>
-      
-      <div id="searchResult" class="hidden ticket-result">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-          <h3 id="resId" style="color:var(--verde-lima); margin:0;"></h3>
-          <span id="resStatus" class="status-badge"></span>
-        </div>
-        <p style="font-size:0.9rem; color:var(--texto-gris); margin-bottom:15px;" id="resDate"></p>
-        
-        <p><strong>Comentarios de Sistemas:</strong></p>
-        <div style="background:rgba(0,0,0,0.2); padding:10px; border-radius:4px; min-height:60px; margin-top:5px;">
-          <p id="resComments" style="font-style:italic; color:var(--texto-claro)">...</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    /* ==============================================
-       CONFIGURACIÓN
-       ============================================== */
-    // Tu enlace de Google Apps Script (El que proporcionaste)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyXkJtXEWrYz5izdFpY4xoJwhDYDxrrSe1QA-G_A48FN7ksKDsgdWToh-t5c--HwOuqOA/exec';
-
-    // Credenciales de Acceso
-    const credentials = {
-      "CUUMX": "1020", "CUUCY": "1115", "CUUWY": "4578", "CUUDE": "1623",
-      "CJSAT": "1632", "JUAZO": "9865", "JUAMI": "7410"
-    };
-
-    /* ==============================================
-       LÓGICA DE LOGIN
-       ============================================== */
-    const loginView = document.getElementById('login-view');
-    const supportView = document.getElementById('support-view');
-    const loginForm = document.getElementById('loginForm');
-
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const user = document.getElementById('username').value.trim().toUpperCase();
-      const pass = document.getElementById('password').value.trim();
-
-      if (credentials[user] && credentials[user] === pass) {
-        loginView.classList.add('hidden');
-        supportView.classList.remove('hidden');
-        document.getElementById('incodeHotel').value = user;
-        document.getElementById('userDisplay').innerText = "Usuario: " + user;
-      } else {
-        // Animación de error
-        const errorMsg = document.getElementById('loginError');
-        errorMsg.style.display = 'block';
-        loginView.style.animation = 'none';
-        setTimeout(() => loginView.style.animation = 'fadeIn 0.5s', 10);
-      }
-    });
-
-    function logout() {
-      loginForm.reset();
-      supportView.classList.add('hidden');
-      loginView.classList.remove('hidden');
-      document.getElementById('loginError').style.display = 'none';
-    }
-
-    /* ==============================================
-       NAVEGACIÓN (TABS)
-       ============================================== */
-    function switchTab(tab) {
-      const tabReport = document.getElementById('tab-report');
-      const tabStatus = document.getElementById('tab-status');
-      const btnReport = document.getElementById('tabBtn-report');
-      const btnStatus = document.getElementById('tabBtn-status');
-
-      if(tab === 'report') {
-        tabReport.classList.remove('hidden');
-        tabStatus.classList.add('hidden');
-        btnReport.classList.add('active');
-        btnStatus.classList.remove('active');
-      } else {
-        tabReport.classList.add('hidden');
-        tabStatus.classList.remove('hidden');
-        btnReport.classList.remove('active');
-        btnStatus.classList.add('active');
-      }
-    }
-
-    /* ==============================================
-       ENVIAR TICKET (DO POST)
-       ============================================== */
-    const ticketForm = document.getElementById('ticketForm');
-    const successDiv = document.getElementById('successMessage');
-
-    ticketForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const btn = document.getElementById('submitBtn');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Procesando...';
-      btn.disabled = true;
-
-      // Generar fecha y hora local
-      const now = new Date();
-      document.getElementById('hiddenDate').value = now.toLocaleDateString('es-MX') + ' ' + now.toLocaleTimeString('es-MX');
-
-      // Preparar datos para enviar
-      const formObj = new FormData(ticketForm);
-      const dataParams = new URLSearchParams();
-      for (const pair of formObj) {
-          dataParams.append(pair[0], pair[1]);
-      }
-
-      // Petición FETCH a Google Script
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: dataParams
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result === "success") {
-          document.getElementById('newTicketId').innerText = data.id;
-          ticketForm.classList.add('hidden');
-          successDiv.classList.remove('hidden');
-        } else {
-          alert("Error del sistema: " + data.error);
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(e => e.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            const idx = ['venta','alta','baja','reporte'].indexOf(id);
+            if(idx !== -1) document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+            hideStatus();
         }
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-      })
-      .catch(error => {
-        console.error(error);
-        alert("Hubo un error de conexión. Por favor verifica:\n1. Tu conexión a internet.\n2. Que hayas actualizado el Script a 'Nueva Versión'.");
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-      });
-    });
 
-    function resetForm() {
-      ticketForm.reset();
-      // Restaurar usuario logueado
-      const user = document.getElementById('userDisplay').innerText.replace("Usuario: ", "").trim();
-      if(user) document.getElementById('incodeHotel').value = user;
-      
-      successDiv.classList.add('hidden');
-      ticketForm.classList.remove('hidden');
-    }
-
-    /* ==============================================
-       BUSCAR TICKET (DO GET)
-       ============================================== */
-    function buscarTicket() {
-      const idInput = document.getElementById('searchTicketId');
-      const id = idInput.value.trim();
-      
-      if(!id) { alert("Por favor escribe un ID de ticket."); return; }
-
-      const btn = document.getElementById('btnBuscar');
-      const originalText = btn.innerHTML;
-      const resultBox = document.getElementById('searchResult');
-      
-      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Buscando...';
-      btn.disabled = true;
-      resultBox.classList.add('hidden');
-
-      // Petición GET
-      fetch(SCRIPT_URL + "?q=" + encodeURIComponent(id))
-      .then(response => response.json())
-      .then(data => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-
-        if (data.result === "found") {
-          resultBox.classList.remove('hidden');
-          
-          // Llenar datos
-          document.getElementById('resId').innerText = data.data.id;
-          document.getElementById('resDate').innerText = "Creado el: " + data.data.fecha;
-          document.getElementById('resComments').innerText = data.data.comentarios || "Sin comentarios por el momento.";
-          
-          // Estilizar Estatus
-          const statusEl = document.getElementById('resStatus');
-          statusEl.innerText = data.data.estatus;
-          statusEl.className = 'status-badge'; // Reset
-          
-          if (data.data.estatus === 'PENDIENTE') statusEl.classList.add('status-pendiente');
-          else if (data.data.estatus === 'CERRADO') statusEl.classList.add('status-cerrado');
-          else statusEl.classList.add('status-proceso');
-          
-        } else {
-          alert("No se encontró ningún ticket con el ID: " + id);
+        function initDates() {
+            const m = document.getElementById('mesSelect'), y = document.getElementById('anioSelect');
+            ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"].forEach((n,i) => {
+                const o = document.createElement('option'); o.value = i+1; o.text = n; m.add(o);
+            });
+            m.value = new Date().getMonth()+1;
+            const cy = new Date().getFullYear();
+            [cy, cy-1].forEach(yr => { const o = document.createElement('option'); o.value = yr; o.text = yr; y.add(o); });
         }
-      })
-      .catch(error => {
-        console.error(error);
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        alert("Error al buscar. Intenta nuevamente.");
-      });
-    }
-  </script>
+
+        function fetchProducts() {
+            const sels = document.querySelectorAll('.product-select');
+            fetch(SCRIPT_URL).then(r=>r.json()).then(d=>{
+                sels.forEach(s => {
+                    const val = s.value; s.innerHTML = '<option value="">Selecciona...</option>';
+                    d.forEach(p => { const o = document.createElement('option'); o.value = p.name; o.text = `${p.name} (Stock: ${p.stock})`; s.add(o); });
+                    if(val) s.value = val;
+                });
+            }).catch(e => console.error(e));
+        }
+
+        function showStatus(msg, type) {
+            const s = document.getElementById('statusMsg'); s.innerHTML=msg; s.className=type; s.style.display='block';
+            if(type==='success') setTimeout(()=>s.style.display='none',5000);
+        }
+        function hideStatus() { document.getElementById('statusMsg').style.display='none'; }
+
+        function handleForm(e, action) {
+            e.preventDefault();
+            const form = e.target; const btn = form.querySelector('button'); const txt = btn.innerHTML;
+            btn.disabled=true; btn.innerHTML='<div class="loader"></div> Procesando...'; hideStatus();
+            
+            const data = Object.fromEntries(new FormData(form).entries()); data.action = action;
+            fetch(SCRIPT_URL, { method:'POST', body:JSON.stringify(data) })
+                .then(r=>r.json()).then(res => {
+                    if(res.result==='success') {
+                        showStatus(res.message, 'success');
+                        if(action!=='reporte') { form.reset(); fetchProducts(); }
+                    } else showStatus('⚠️ '+res.message, 'error');
+                })
+                .catch(err => showStatus('Error de conexión', 'error'))
+                .finally(() => { btn.disabled=false; btn.innerHTML=txt; });
+        }
+
+        ['alta','venta','baja','reporte'].forEach(Type => {
+            const f = document.getElementById('form'+Type.charAt(0).toUpperCase()+Type.slice(1));
+            if(f) f.addEventListener('submit', (e)=>handleForm(e, Type));
+        });
+    </script>
 </body>
 </html>
