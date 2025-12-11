@@ -26,6 +26,21 @@
             align-items: center;
         }
 
+        /* --- CORRECCIÓN DE VISIBILIDAD (LETRAS NEGRAS) --- */
+        input, select, textarea {
+            color: #000000 !important; /* Texto NEGRO FUERTE */
+            font-weight: 500;
+        }
+        label {
+            color: #000000 !important; /* Etiquetas NEGRAS */
+            font-weight: 700;
+        }
+        ::placeholder { /* Color del texto de ayuda */
+            color: #666 !important;
+            opacity: 1;
+        }
+        /* ------------------------------------------------ */
+
         header {
             width: 100%;
             background: white;
@@ -39,7 +54,6 @@
 
         .logo-section { display: flex; align-items: center; gap: 15px; }
         
-        /* Ajuste para el nuevo logo de Fibra Inn */
         .logo-section img {
             max-height: 60px;
             width: auto;
@@ -65,7 +79,6 @@
             overflow: hidden;
         }
 
-        /* Barra superior decorativa */
         .container::before {
             content: '';
             position: absolute;
@@ -125,7 +138,6 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 700;
-            color: var(--color-primary);
             font-size: 14px;
         }
 
@@ -212,64 +224,111 @@
         <div id="venta" class="section active">
             <h2>Registrar Venta</h2>
             <form id="formVenta">
-                <div class="form-group"><label>👤 Vendedor</label><input type="text" name="vendedor" required placeholder="Nombre del colaborador"></div>
-                <div class="form-group"><label>📦 Producto</label><select name="producto" class="product-select" required><option value="">Cargando inventario...</option></select></div>
-                <div class="form-group" style="display: flex; gap: 15px;">
-                    <div style="flex: 1;"><label>Cant.</label><input type="number" name="cantidad" min="1" value="1" required></div>
-                    <div style="flex: 1;"><label>Precio Venta ($)</label><input type="number" name="precio" min="0" step="0.50" required placeholder="0.00"></div>
+                <div class="form-group">
+                    <label>👤 Vendedor</label>
+                    <input type="text" name="vendedor" required placeholder="Tu nombre">
                 </div>
-                <button type="submit" class="action-btn">✅ Registrar Venta</button>
+                <div class="form-group">
+                    <label>📦 Producto (Del Inventario)</label>
+                    <select name="producto" class="inventory-select" required>
+                        <option value="">Cargando inventario...</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display: flex; gap: 15px;">
+                    <div style="flex: 1;">
+                        <label>Cant.</label>
+                        <input type="number" name="cantidad" min="1" value="1" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Precio ($)</label>
+                        <input type="number" name="precio" min="0" step="0.50" required placeholder="0.00">
+                    </div>
+                </div>
+                <button type="submit" class="action-btn">✅ Cobrar</button>
             </form>
         </div>
 
         <div id="alta" class="section">
             <h2>Alta de Producto</h2>
+            <p style="font-size:12px; color:#333; margin-bottom:15px; text-align:center;">
+                Selecciona la categoría y el producto del catálogo oficial.
+            </p>
             <form id="formAlta">
-                <div class="form-group"><label>Nombre del Producto</label><input type="text" name="nombre" required placeholder="Ej. Refresco Cola"></div>
-                <div class="form-group"><label>Descripción</label><input type="text" name="descripcion" placeholder="Detalles adicionales (opcional)"></div>
-                <div class="form-group"><label>💲 Costo Compra (Hotel)</label><input type="number" name="costo" min="0" step="0.50" required placeholder="0.00"></div>
-                <button type="submit" class="action-btn">💾 Guardar en Inventario</button>
+                <div class="form-group">
+                    <label>📂 Categoría</label>
+                    <select id="categoriaSelect" onchange="filtrarProductos()" required>
+                        <option value="">Cargando categorías...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📦 Producto</label>
+                    <select name="nombre" id="productoSelect" required disabled>
+                        <option value="">Primero selecciona categoría</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="display: flex; gap: 15px;">
+                    <div style="flex: 1;">
+                        <label>Cant. Inicial</label>
+                        <input type="number" name="cantidad" min="1" required placeholder="Ej: 24">
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Costo Compra ($)</label>
+                        <input type="number" name="costo" min="0" step="0.50" required placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción (Opcional)</label>
+                    <input type="text" name="descripcion" placeholder="Detalles extra">
+                </div>
+
+                <button type="submit" class="action-btn">💾 Guardar / Sumar Stock</button>
             </form>
         </div>
 
         <div id="baja" class="section">
-            <h2>Registrar Baja / Merma</h2>
+            <h2>Registrar Baja</h2>
             <form id="formBaja">
-                <div class="form-group"><label>📦 Producto</label><select name="producto" class="product-select" required><option value="">Cargando inventario...</option></select></div>
+                <div class="form-group"><label>📦 Producto</label><select name="producto" class="inventory-select" required><option value="">Cargando...</option></select></div>
                 <div class="form-group"><label>Cantidad</label><input type="number" name="cantidad" min="1" required placeholder="1"></div>
-                <div class="form-group"><label>Motivo de Baja</label><select name="motivo" required>
+                <div class="form-group"><label>Motivo</label><select name="motivo" required>
                     <option value="Caducidad">📅 Caducidad</option>
-                    <option value="Cortesia">🎁 Cortesía / Amenidad</option>
-                    <option value="Robo">🚨 Robo / Pérdida</option>
+                    <option value="Cortesia">🎁 Cortesía</option>
+                    <option value="Robo">🚨 Robo</option>
                     <option value="Consumo Interno">🏨 Consumo Interno</option>
-                    <option value="Dañado">💔 Producto Dañado</option>
+                    <option value="Dañado">💔 Dañado</option>
                 </select></div>
                 <button type="submit" class="action-btn" style="background-color: #d32f2f;">🗑️ Confirmar Baja</button>
             </form>
         </div>
 
         <div id="reporte" class="section">
-            <h2>Generar Reporte Mensual</h2>
-            <div class="report-info">
-                Se generará un informe PDF detallado (Ventas, Bajas, Inventario) y se enviará a los correos corporativos de Gloria y Cynthia.
-            </div>
+            <h2>Generar Reporte</h2>
+            <div class="report-info">Se enviará el PDF a los correos registrados.</div>
             <form id="formReporte">
                 <div class="form-group" style="display: flex; gap: 15px;">
                     <div style="flex: 1;"><label>Mes</label><select name="mes" id="mesSelect" required></select></div>
                     <div style="flex: 1;"><label>Año</label><select name="anio" id="anioSelect" required></select></div>
                 </div>
-                <button type="submit" class="action-btn">📧 Generar y Enviar PDF</button>
+                <button type="submit" class="action-btn">📧 Enviar PDF</button>
             </form>
         </div>
     </div>
 
     <script>
         // **********************************************************
-        // URL ACTUALIZADA
+        // URL NUEVA CONFIGURADA (FIBRA INN V2)
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2VOGpXO43Uzy6hw5sFAC-E0eFqogvXHGnFvJUOBSQ6yeNZQ3EGMQmKgUy_1z55yJy/exec";
         // **********************************************************
 
-        window.addEventListener('DOMContentLoaded', () => { fetchProducts(); initDates(); });
+        let catalogoGlobal = []; 
+
+        window.addEventListener('DOMContentLoaded', () => { 
+            loadData(); 
+            initDates(); 
+        });
 
         function showSection(id) {
             document.querySelectorAll('.section').forEach(e => e.classList.remove('active'));
@@ -290,15 +349,60 @@
             [cy, cy-1].forEach(yr => { const o = document.createElement('option'); o.value = yr; o.text = yr; y.add(o); });
         }
 
-        function fetchProducts() {
-            const sels = document.querySelectorAll('.product-select');
-            fetch(SCRIPT_URL).then(r=>r.json()).then(d=>{
-                sels.forEach(s => {
-                    const val = s.value; s.innerHTML = '<option value="">Selecciona...</option>';
-                    d.forEach(p => { const o = document.createElement('option'); o.value = p.name; o.text = `${p.name} (Stock: ${p.stock})`; s.add(o); });
-                    if(val) s.value = val;
+        // CARGAR DATOS (Inventario + Catálogo)
+        function loadData() {
+            const invSelects = document.querySelectorAll('.inventory-select');
+            const catSelect = document.getElementById('categoriaSelect');
+            
+            fetch(SCRIPT_URL)
+                .then(r => r.json())
+                .then(data => {
+                    // 1. Llenar Selects de Inventario (Venta y Baja)
+                    invSelects.forEach(s => {
+                        const val = s.value; s.innerHTML = '<option value="">Selecciona...</option>';
+                        data.inventario.forEach(p => { 
+                            const o = document.createElement('option'); 
+                            o.value = p.name; 
+                            o.text = `${p.name} (Stock: ${p.stock})`; 
+                            s.add(o); 
+                        });
+                        if(val) s.value = val;
+                    });
+
+                    // 2. Guardar Catálogo y Llenar Categorías
+                    catalogoGlobal = data.catalogo;
+                    const categorias = [...new Set(data.catalogo.map(item => item.categoria))];
+                    
+                    catSelect.innerHTML = '<option value="">Selecciona Categoría...</option>';
+                    categorias.forEach(c => {
+                        const o = document.createElement('option');
+                        o.value = c; o.text = c;
+                        catSelect.add(o);
+                    });
+
+                }).catch(e => console.error(e));
+        }
+
+        // FUNCIÓN: FILTRAR PRODUCTOS POR CATEGORÍA
+        function filtrarProductos() {
+            const cat = document.getElementById('categoriaSelect').value;
+            const prodSelect = document.getElementById('productoSelect');
+            
+            prodSelect.innerHTML = '<option value="">Selecciona Producto...</option>';
+            
+            if(cat) {
+                prodSelect.disabled = false;
+                const filtrados = catalogoGlobal.filter(item => item.categoria === cat);
+                filtrados.forEach(item => {
+                    const o = document.createElement('option');
+                    o.value = item.producto;
+                    o.text = item.producto;
+                    prodSelect.add(o);
                 });
-            }).catch(e => console.error(e));
+            } else {
+                prodSelect.disabled = true;
+                prodSelect.innerHTML = '<option value="">Primero selecciona categoría</option>';
+            }
         }
 
         function showStatus(msg, type) {
@@ -317,7 +421,13 @@
                 .then(r=>r.json()).then(res => {
                     if(res.result==='success') {
                         showStatus(res.message, 'success');
-                        if(action!=='reporte') { form.reset(); fetchProducts(); }
+                        if(action!=='reporte') { 
+                            form.reset(); 
+                            loadData(); // Recargar datos
+                            // Resetear selects de alta
+                            document.getElementById('productoSelect').innerHTML = '<option value="">Primero selecciona categoría</option>';
+                            document.getElementById('productoSelect').disabled = true;
+                        }
                     } else showStatus('⚠️ '+res.message, 'error');
                 })
                 .catch(err => showStatus('Error de conexión', 'error'))
