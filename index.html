@@ -10,7 +10,7 @@
         /* --- ESTILOS DE IDENTIDAD FIBRA INN --- */
         :root {
             --color-primary: #006400;   /* Verde Institucional Oscuro */
-            --color-accent: #3CB371;    /* Verde Lima/Brillante para acentos */
+            --color-accent: #3CB371;    /* Verde Lima/Brillante */
             --color-bg-light: #f8f9fa;
         }
 
@@ -26,20 +26,19 @@
             align-items: center;
         }
 
-        /* --- CORRECCIÓN DE VISIBILIDAD (LETRAS NEGRAS) --- */
+        /* --- VISIBILIDAD MÁXIMA (TEXTO NEGRO) --- */
         input, select, textarea {
-            color: #000000 !important; /* Texto NEGRO FUERTE */
-            font-weight: 500;
+            color: #000000 !important;
+            font-weight: 600;
         }
         label {
-            color: #000000 !important; /* Etiquetas NEGRAS */
-            font-weight: 700;
+            color: #000000 !important;
+            font-weight: 800;
         }
-        ::placeholder { /* Color del texto de ayuda */
-            color: #666 !important;
-            opacity: 1;
+        ::placeholder {
+            color: #555 !important;
+            opacity: 0.8;
         }
-        /* ------------------------------------------------ */
 
         header {
             width: 100%;
@@ -53,19 +52,8 @@
         }
 
         .logo-section { display: flex; align-items: center; gap: 15px; }
-        
-        .logo-section img {
-            max-height: 60px;
-            width: auto;
-        }
-
-        .logo-section h1 {
-            color: var(--color-primary);
-            font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .logo-section img { max-height: 60px; width: auto; }
+        .logo-section h1 { color: var(--color-primary); font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .container {
             width: 95%;
@@ -137,17 +125,16 @@
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 700;
             font-size: 14px;
         }
 
         input, select {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #bdbdbd;
             border-radius: 8px;
             font-size: 15px;
-            background-color: #fcfcfc;
+            background-color: #ffffff;
             transition: all 0.3s;
         }
         input:focus, select:focus {
@@ -184,6 +171,7 @@
             border-left: 5px solid var(--color-accent);
             color: #1b5e20;
             margin-bottom: 20px;
+            font-weight: 500;
         }
 
         .section { display: none; animation: fadeIn 0.5s ease; }
@@ -226,10 +214,19 @@
             <form id="formVenta">
                 <div class="form-group">
                     <label>👤 Vendedor</label>
-                    <input type="text" name="vendedor" required placeholder="Tu nombre">
+                    <select name="vendedor" required>
+                        <option value="">Selecciona tu nombre...</option>
+                        <option value="LARISA VELO">LARISA VELO</option>
+                        <option value="LAURA ANDAZOLA">LAURA ANDAZOLA</option>
+                        <option value="SUGHEY CONCHA">SUGHEY CONCHA</option>
+                        <option value="FABIAN MUELA">FABIAN MUELA</option>
+                        <option value="GABRIELA ESPINOZA">GABRIELA ESPINOZA</option>
+                        <option value="DAVID ZARATE">DAVID ZARATE</option>
+                        <option value="JOHAN H">JOHAN H</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>📦 Producto (Del Inventario)</label>
+                    <label>📦 Producto (Inventario Disponible)</label>
                     <select name="producto" class="inventory-select" required>
                         <option value="">Cargando inventario...</option>
                     </select>
@@ -240,7 +237,7 @@
                         <input type="number" name="cantidad" min="1" value="1" required>
                     </div>
                     <div style="flex: 1;">
-                        <label>Precio ($)</label>
+                        <label>Precio Venta ($)</label>
                         <input type="number" name="precio" min="0" step="0.50" required placeholder="0.00">
                     </div>
                 </div>
@@ -250,8 +247,8 @@
 
         <div id="alta" class="section">
             <h2>Alta de Producto</h2>
-            <p style="font-size:12px; color:#333; margin-bottom:15px; text-align:center;">
-                Selecciona la categoría y el producto del catálogo oficial.
+            <p style="font-size:13px; color:#000; margin-bottom:15px; text-align:center; font-weight: 500;">
+                🔒 Selecciona categoría y producto del catálogo autorizado.
             </p>
             <form id="formAlta">
                 <div class="form-group">
@@ -305,21 +302,23 @@
         </div>
 
         <div id="reporte" class="section">
-            <h2>Generar Reporte</h2>
-            <div class="report-info">Se enviará el PDF a los correos registrados.</div>
+            <h2>Reporte Financiero</h2>
+            <div class="report-info">
+                Se generará un PDF con <strong>Ventas, Bajas, Inventario y Ganancias Reales</strong> y se enviará a Gloria y Cynthia.
+            </div>
             <form id="formReporte">
                 <div class="form-group" style="display: flex; gap: 15px;">
                     <div style="flex: 1;"><label>Mes</label><select name="mes" id="mesSelect" required></select></div>
                     <div style="flex: 1;"><label>Año</label><select name="anio" id="anioSelect" required></select></div>
                 </div>
-                <button type="submit" class="action-btn">📧 Enviar PDF</button>
+                <button type="submit" class="action-btn">📧 Enviar Reporte Completo</button>
             </form>
         </div>
     </div>
 
     <script>
         // **********************************************************
-        // URL NUEVA CONFIGURADA (FIBRA INN V2)
+        // URL DEFINITIVA (FIBRA INN V3)
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2VOGpXO43Uzy6hw5sFAC-E0eFqogvXHGnFvJUOBSQ6yeNZQ3EGMQmKgUy_1z55yJy/exec";
         // **********************************************************
 
@@ -349,7 +348,6 @@
             [cy, cy-1].forEach(yr => { const o = document.createElement('option'); o.value = yr; o.text = yr; y.add(o); });
         }
 
-        // CARGAR DATOS (Inventario + Catálogo)
         function loadData() {
             const invSelects = document.querySelectorAll('.inventory-select');
             const catSelect = document.getElementById('categoriaSelect');
@@ -357,7 +355,7 @@
             fetch(SCRIPT_URL)
                 .then(r => r.json())
                 .then(data => {
-                    // 1. Llenar Selects de Inventario (Venta y Baja)
+                    // Llenar Inventario
                     invSelects.forEach(s => {
                         const val = s.value; s.innerHTML = '<option value="">Selecciona...</option>';
                         data.inventario.forEach(p => { 
@@ -369,21 +367,17 @@
                         if(val) s.value = val;
                     });
 
-                    // 2. Guardar Catálogo y Llenar Categorías
+                    // Llenar Catálogo
                     catalogoGlobal = data.catalogo;
                     const categorias = [...new Set(data.catalogo.map(item => item.categoria))];
-                    
                     catSelect.innerHTML = '<option value="">Selecciona Categoría...</option>';
                     categorias.forEach(c => {
-                        const o = document.createElement('option');
-                        o.value = c; o.text = c;
-                        catSelect.add(o);
+                        const o = document.createElement('option'); o.value = c; o.text = c; catSelect.add(o);
                     });
 
                 }).catch(e => console.error(e));
         }
 
-        // FUNCIÓN: FILTRAR PRODUCTOS POR CATEGORÍA
         function filtrarProductos() {
             const cat = document.getElementById('categoriaSelect').value;
             const prodSelect = document.getElementById('productoSelect');
@@ -394,10 +388,7 @@
                 prodSelect.disabled = false;
                 const filtrados = catalogoGlobal.filter(item => item.categoria === cat);
                 filtrados.forEach(item => {
-                    const o = document.createElement('option');
-                    o.value = item.producto;
-                    o.text = item.producto;
-                    prodSelect.add(o);
+                    const o = document.createElement('option'); o.value = item.producto; o.text = item.producto; prodSelect.add(o);
                 });
             } else {
                 prodSelect.disabled = true;
@@ -423,10 +414,9 @@
                         showStatus(res.message, 'success');
                         if(action!=='reporte') { 
                             form.reset(); 
-                            loadData(); // Recargar datos
-                            // Resetear selects de alta
-                            document.getElementById('productoSelect').innerHTML = '<option value="">Primero selecciona categoría</option>';
-                            document.getElementById('productoSelect').disabled = true;
+                            loadData();
+                            const pSel = document.getElementById('productoSelect');
+                            if(pSel) { pSel.innerHTML = '<option value="">Primero selecciona categoría</option>'; pSel.disabled = true; }
                         }
                     } else showStatus('⚠️ '+res.message, 'error');
                 })
